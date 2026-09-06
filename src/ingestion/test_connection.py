@@ -30,8 +30,8 @@ print("Fetching Adzuna...")
 adzuna_params = {
     "app_id": os.getenv("ADZUNA_APP_ID"),
     "app_key": os.getenv("ADZUNA_APP_KEY"),
-    "results_per_page": 5,
-    "what": "data engineer",
+    "results_per_page": 50,
+    "category": "it-jobs",
 }
 r2 = requests.get("https://api.adzuna.com/v1/api/jobs/us/search/1", params=adzuna_params)
 print("Adzuna status:", r2.status_code)
