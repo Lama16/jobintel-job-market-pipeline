@@ -40,3 +40,17 @@ adzuna_path = f"data/raw/adzuna/{today}.json"
 with open(adzuna_path, "w") as f:
     json.dump(r2.json(), f, indent=2)
 print(f"Saved to {adzuna_path}")
+
+import csv
+
+manifest_path = "data/raw/run_manifest.csv"
+manifest_exists = os.path.exists(manifest_path)
+
+with open(manifest_path, "a", newline="") as f:
+    writer = csv.writer(f)
+    if not manifest_exists:
+        writer.writerow(["date", "source", "status", "record_count"])
+    writer.writerow([today, "usajobs", r1.status_code, r1.json()["SearchResult"]["SearchResultCount"]])
+    writer.writerow([today, "adzuna", r2.status_code, len(r2.json()["results"])])
+
+print(f"Manifest updated: {manifest_path}")
