@@ -1,0 +1,46 @@
+data_engineer:
+  - "data engineer"
+  - "data solutions developer"
+
+software_engineer:
+  - "software engineer"
+  - "software developer"
+  - "full stack"
+  - "web application developer"
+
+data_scientist:
+  - "data scientist"
+
+it_specialist:
+  - "it specialist"
+  - "it spec"
+  - "information technology specialist"
+
+cybersecurity:
+  - "cybersecurity"
+  - "infosec"
+  - "security engineer"
+
+cloud_infrastructure:
+  - "cloud engineer"
+  - "infrastructure engineer"
+  - "systems administrator"
+  - "network architect"
+  - "network engineer"
+
+systems_engineer:
+  - "systems engineer"
+
+data_analyst_bi:
+  - "business intelligence"
+  - "data analyst"
+
+architect:
+  - "solutions architect"
+
+developer_other:
+  - "python developer"
+  - "java"
+  - "cobol developer"
+  - "kafka engineer"
+  - "test automation"
