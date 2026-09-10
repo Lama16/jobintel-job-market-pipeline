@@ -1,0 +1,37 @@
+# Salary normalization config.
+# Holds the API-specific field names so salary_normalizer.py stays generic.
+# Adding a new source later = editing this file, not the Python.
+
+sources:
+  usajobs:
+    # Where the salary block sits inside one raw SearchResultItem.
+    # The 0 steps into the first entry of the PositionRemuneration list.
+    salary_path: [MatchedObjectDescriptor, PositionRemuneration, 0]
+    min_field: MinimumRange
+    max_field: MaximumRange
+    # USAJOBS always publishes a real range, so there is no flag to read.
+    estimated_when: null
+    # USAJOBS states the pay period per posting (mostly PA, a few PH).
+    interval_field: RateIntervalCode
+
+  adzuna:
+    # The salary fields sit on the posting itself.
+    salary_path: []
+    min_field: salary_min
+    max_field: salary_max
+    # Adzuna marks a predicted salary here. "1" = predicted, "0" = published.
+    estimated_when:
+      field: salary_is_predicted
+      values: ["1", 1, true]
+    # Adzuna figures are already annual and carry no interval field.
+    interval_field: null
+
+# How many pay periods make one year, for sources that report an interval.
+# Only used when the source has an interval_field.
+annual_multipliers:
+  PA: 1       # Per Year
+  PH: 2080    # Per Hour (40 hours x 52 weeks)
+  PD: 260     # Per Day
+  PW: 52      # Per Week
+  PB: 26      # Per Biweekly
+  PM: 12      # Per Month
