@@ -63,6 +63,5 @@ with open(manifest_path, "a", newline="") as f:
     if not manifest_exists:
         writer.writerow(["date", "source", "status", "record_count"])
     writer.writerow([today, "usajobs", r1.status_code, r1.json()["SearchResult"]["SearchResultCount"]])
-    writer.writerow([today, "adzuna", r2.status_code, len(r2.json()["results"])])
-
+    writer.writerow([today, "adzuna", r2.status_code, len(all_results)])
 print(f"Manifest updated: {manifest_path}")
