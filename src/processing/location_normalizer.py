@@ -1,3 +1,4 @@
+import json
 def normalize_usajobs_location(location_data):
     """
     Takes one location object from USAJOBS PositionLocation list
@@ -43,7 +44,18 @@ def normalize_adzuna_location(area_list):
         "city": city,
         "state": state,
         "region": region
+
     }
+
+def load_usajobs_file(filepath):
+    """
+    Opens a USAJOBS raw JSON file and returns the list of job postings.
+    """
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    jobs = data["SearchResult"]["SearchResultItems"]
+    return jobs
 if __name__ == "__main__":
     sample_position_location = [
         {
@@ -61,3 +73,5 @@ if __name__ == "__main__":
     sample_area = ["US", "Washington", "Grays Harbor County", "Woodlawn"]
     adzuna_result = normalize_adzuna_location(sample_area)
     print(adzuna_result)
+    real_jobs = load_usajobs_file("data/raw/usajobs/2026-09-08.json")
+    print("Total jobs loaded:", len(real_jobs))
