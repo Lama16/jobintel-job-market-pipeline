@@ -16,6 +16,7 @@ usajobs_headers = {
 usajobs_params = {"JobCategoryCode": "2210", "ResultsPerPage": 500} 
 r1 = requests.get("https://data.usajobs.gov/api/search", headers=usajobs_headers, params=usajobs_params)
 print("USAJOBS status:", r1.status_code)
+print("USAJOBS response:", r1.text)
 
 today = date.today().isoformat()
 usajobs_path = f"data/raw/usajobs/{today}.json"
