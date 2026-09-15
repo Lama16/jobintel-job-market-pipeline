@@ -14,7 +14,8 @@ def normalize_usajobs_location(location_data):
     Takes one location object from USAJOBS PositionLocation list
     and returns a standardized dict: city, state, region.
     """
-    city = location_data.get("CityName")
+    raw_city = location_data.get("CityName")
+    city = raw_city.split(",")[0].strip() if raw_city else None
     state = location_data.get("CountrySubDivisionCode")
     region = None  # نحددها لاحقًا لو احتجناها
 
