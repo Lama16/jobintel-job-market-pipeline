@@ -35,4 +35,4 @@ if __name__ == "__main__":
     """
 
     result = extract_skills(sample_description, skills)
-    print("Skills found:", result)p
+    print("Skills found:", result)
