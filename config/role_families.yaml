@@ -30,6 +30,8 @@ cloud_infrastructure:
 
 systems_engineer:
   - "systems engineer"
+  - "site reliability"
+  - "sre"
 
 data_analyst_bi:
   - "business intelligence"

@@ -30,3 +30,13 @@
 - Both sources verified live and returning real data before proceeding to Week 2.
 - USAJOBS JobCategoryCode may be expanded later (e.g. adding 1550, 0854/0855) after
   reviewing the full official code list.
+
+## Known Limitations
+
+**Adzuna description truncation:** Adzuna's API returns job descriptions
+truncated at roughly 300-400 characters, often ending mid-sentence. This
+means skill extraction from Adzuna postings is systematically less complete
+than from USAJOBS, whose QualificationSummary field is returned in full.
+Verified by inspecting raw description fields directly (e.g. job ID
+5870299019, description ends "...and…"). This is a source limitation, not
+a defect in the extraction logic.
