@@ -16,7 +16,13 @@ def load_jobs(usajobs_path, adzuna_path):
 def group_potential_duplicates(jobs):
     groups = {}
     for job in jobs:
-        key = (job.get("company"), job.get("role_family"), job.get("city"))
+        company = job.get("company")
+        # USAJOBS jobs don't have a company field, so use the job_id as a
+        # stand-in to avoid grouping unrelated government jobs together
+        if company is None:
+            company = f"usajobs::{job.get('job_id')}"
+
+        key = (company, job.get("role_family"), job.get("city"))
         if key not in groups:
             groups[key] = []
         groups[key].append(job)
@@ -52,11 +58,11 @@ if __name__ == "__main__":
     adzuna_path = "data/processed/adzuna_2026-09-08.json"
 
     jobs = load_jobs(usajobs_path, adzuna_path)
-    print(f"عدد الوظائف قبل الدمج: {len(jobs)}")
+    print(f"Total jobs before merging: {len(jobs)}")
 
     deduplicated_jobs, removed_count = deduplicate(jobs)
-    print(f"عدد الوظائف بعد إزالة التكرار: {len(deduplicated_jobs)}")
-    print(f"عدد الوظائف المحذوفة كتكرار: {removed_count}")
+    print(f"Total jobs after deduplication: {len(deduplicated_jobs)}")
+    print(f"Duplicates removed: {removed_count}")
 
     output_path = save_deduplicated(deduplicated_jobs)
-    print(f"تم الحفظ في: {output_path}")
+    print(f"Saved to: {output_path}")
