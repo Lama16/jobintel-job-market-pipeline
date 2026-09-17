@@ -6,7 +6,7 @@ import snowflake.connector
 from dotenv import load_dotenv
 
 USAJOBS_FILE = "data/processed/usajobs_2026-09-08.json"
-QUARANTINE_FILE = "quarantine/data/quarantined_jobs.json"
+QUARANTINE_FILE = "data/quarantine/quarantined_jobs.json"
 SNAPSHOT_DATE = "2026-09-08"
 
 # Children before parents, so TRUNCATE never breaks a reference.
