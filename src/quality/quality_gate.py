@@ -1,6 +1,8 @@
 import json
 import yaml
 import os
+import json
+from datetime import datetime
 
 
 def check_completeness(job):
@@ -68,13 +70,9 @@ def find_duplicate_job_ids(jobs):
 
 
 if __name__ == "__main__":
-    with open("data/processed/usajobs_2026-09-08.json", "r", encoding="utf-8") as f:
-        usajobs_data = json.load(f)
-
-    with open("data/processed/adzuna_2026-09-08.json", "r", encoding="utf-8") as f:
-        adzuna_data = json.load(f)
-
-    all_jobs = usajobs_data + adzuna_data
+    today = datetime.now().strftime("%Y-%m-%d")
+    with open(f"data/processed/deduplicated_{today}.json", "r", encoding="utf-8") as f:
+         all_jobs = json.load(f)
 
     valid_families = load_valid_role_families()
     valid_states = load_valid_states()
@@ -103,9 +101,13 @@ if __name__ == "__main__":
         else:
             passed_all += 1
 
-    os.makedirs("quarantine/data", exist_ok=True)
+    missing_role = sum(1 for job in all_jobs if job.get("role_family") is None)
+    missing_state = sum(1 for job in all_jobs if job.get("state") is None)
+    print(f"Jobs with no role_family match: {missing_role}")
+    print(f"Jobs with no state value: {missing_state}")
 
-    with open("quarantine/data/quarantined_jobs.json", "w", encoding="utf-8") as f:
+    os.makedirs("data/quarantine", exist_ok=True)
+    with open("data/quarantine/quarantined_jobs.json", "w", encoding="utf-8") as f:
         json.dump(quarantined, f, indent=2, ensure_ascii=False)
 
     print("Total jobs checked:", len(all_jobs))

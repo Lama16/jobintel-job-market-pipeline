@@ -880,7 +880,7 @@
   {
     "job_id": "881050500",
     "title": "ITSPEC (SYSADMIN) (TITLE 32)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Tyndall AFB",
     "state": "Florida",
     "salary_min": 57331.0,
@@ -891,7 +891,7 @@
   {
     "job_id": "881052500",
     "title": "ITSPEC (SYSADMIN) (TITLE 32)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Tyndall AFB",
     "state": "Florida",
     "salary_min": 57331.0,
@@ -902,7 +902,7 @@
   {
     "job_id": "881053900",
     "title": "ITSPEC (SYSADMIN) (TITLE 32)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Tyndall AFB",
     "state": "Florida",
     "salary_min": 57331.0,
@@ -913,7 +913,7 @@
   {
     "job_id": "881054900",
     "title": "ITSPEC (SYSADMIN) (TITLE 32)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Tyndall AFB",
     "state": "Florida",
     "salary_min": 57331.0,
@@ -959,7 +959,7 @@
   {
     "job_id": "881400700",
     "title": "ITSPEC (SYSADMIN) (TITLE 32)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Tyndall AFB",
     "state": "Florida",
     "salary_min": 57331.0,
@@ -1124,7 +1124,7 @@
   {
     "job_id": "881843500",
     "title": "Information System Security Manager (ISSM)",
-    "role_family": null,
+    "role_family": "cybersecurity",
     "city": "Quantico",
     "state": "Virginia",
     "salary_min": 97988.8,
@@ -1777,7 +1777,7 @@
   {
     "job_id": "882532800",
     "title": "Senior Platform Engineer (ServiceNow) #246",
-    "role_family": null,
+    "role_family": "platform_engineer",
     "city": "Washington",
     "state": "District of Columbia",
     "salary_min": 102745.0,
@@ -3144,7 +3144,7 @@
   {
     "job_id": "883349700",
     "title": "SUPV ITSPEC (NETWORK SERVICES/SYSTEMS ADMINISTRATION)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Naha",
     "state": null,
     "salary_min": 84109.0,
@@ -3210,7 +3210,7 @@
   {
     "job_id": "883369200",
     "title": "QA Automation Engineer",
-    "role_family": null,
+    "role_family": "qa_engineer",
     "city": "Suitland",
     "state": "Maryland",
     "salary_min": 121785.0,
@@ -3221,7 +3221,7 @@
   {
     "job_id": "883369400",
     "title": "QA Automation Engineer",
-    "role_family": null,
+    "role_family": "qa_engineer",
     "city": "Suitland",
     "state": "Maryland",
     "salary_min": 121785.0,
@@ -3398,7 +3398,7 @@
   {
     "job_id": "883503600",
     "title": "Information System Security Manager (ISSM)",
-    "role_family": null,
+    "role_family": "cybersecurity",
     "city": "Quantico",
     "state": "Virginia",
     "salary_min": 95000.0,
@@ -3431,7 +3431,7 @@
   {
     "job_id": "883517000",
     "title": "SUPV ITSPEC (PLCYPLN)",
-    "role_family": null,
+    "role_family": "it_specialist",
     "city": "Greeley",
     "state": "Colorado",
     "salary_min": 118675.0,

@@ -5,8 +5,16 @@ data_engineer:
 software_engineer:
   - "software engineer"
   - "software developer"
+  - "softwareentwickler"
   - "full stack"
   - "web application developer"
+  - "web developer"
+  - ".net developer"
+  - "front end developer"
+  - "salesforce developer"
+  - "release train engineer"
+  - "staff product engineer"
+  - "development engineer"
 
 data_scientist:
   - "data scientist"
@@ -14,12 +22,15 @@ data_scientist:
 it_specialist:
   - "it specialist"
   - "it spec"
+  - "itspec"
   - "information technology specialist"
 
 cybersecurity:
   - "cybersecurity"
   - "infosec"
   - "security engineer"
+  - "penetration tester"
+  - "security manager"
 
 cloud_infrastructure:
   - "cloud engineer"
@@ -27,6 +38,7 @@ cloud_infrastructure:
   - "systems administrator"
   - "network architect"
   - "network engineer"
+  - "cloud solutions engineer"
 
 systems_engineer:
   - "systems engineer"
@@ -39,6 +51,10 @@ data_analyst_bi:
 
 architect:
   - "solutions architect"
+  - "enterprise architect"
+  - "cloud architect"
+  - "lead architect"
+  - "principal engineer"
 
 developer_other:
   - "python developer"
@@ -46,3 +62,12 @@ developer_other:
   - "cobol developer"
   - "kafka engineer"
   - "test automation"
+
+platform_engineer:
+  - "platform engineer"
+  - "platform engineering"
+
+qa_engineer:
+  - "qa automation engineer"
+  - "test engineer"
+  - "automation engineer"
