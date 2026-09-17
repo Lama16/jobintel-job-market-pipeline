@@ -12,6 +12,7 @@ def process_one_usajobs_job(raw_job, role_families, us_states, skills_list):
     title = descriptor["PositionTitle"]
 
     role_family = match_role_family(title, role_families)
+    company = descriptor.get("OrganizationName")
 
     location = get_primary_usajobs_location(descriptor["PositionLocation"])
 
@@ -24,6 +25,7 @@ def process_one_usajobs_job(raw_job, role_families, us_states, skills_list):
         "job_id": job_id,
         "title": title,
         "role_family": role_family,
+        "company": company,
         "city": location["city"],
         "state": location["state"],
         "salary_min": salary["salary_min"],
@@ -38,6 +40,7 @@ def process_one_adzuna_job(raw_job, role_families, us_states, skills_list):
     role_family = match_role_family(title, role_families)
 
     company = raw_job.get("company", {}).get("display_name")
+
 
     area = raw_job.get("location", {}).get("area", [])
     location = normalize_adzuna_location(area)
@@ -84,7 +87,7 @@ if __name__ == "__main__":
         processed_jobs.append(result)
 
     save_processed_jobs(processed_jobs, "data/processed/usajobs_2026-09-08.json")
-    
+
     with open("data/raw/adzuna/2026-09-08.json", "r", encoding="utf-8") as f:
         adzuna_data = json.load(f)
 

@@ -1,6 +1,8 @@
 import json
 import os
 from datetime import datetime
+from role_matcher import clean_title
+
 def load_jobs(usajobs_path, adzuna_path):
     """
     يقرأ ملفي usajobs و adzuna ويرجعهم كقائمة وحدة
@@ -21,8 +23,8 @@ def group_potential_duplicates(jobs):
         # stand-in to avoid grouping unrelated government jobs together
         if company is None:
             company = f"usajobs::{job.get('job_id')}"
-
-        key = (company, job.get("role_family"), job.get("city"))
+        cleaned_title = clean_title(job.get("title", ""))
+        key = (company, cleaned_title, job.get("city"))
         if key not in groups:
             groups[key] = []
         groups[key].append(job)
@@ -41,7 +43,14 @@ def deduplicate(jobs):
             deduplicated_jobs.append(newest_job)
             removed_count += len(group_jobs) - 1
 
+    # طباعة تشخيصية مؤقتة - نشوف أمثلة من USAJOBS اتحسبت تكرار
+    for key, group_jobs in groups.items():
+        if len(group_jobs) > 1 and not str(key[0]).startswith("usajobs::"):
+            for j in group_jobs[:1]:
+                print(f"GROUP: {key} -> {len(group_jobs)} jobs, e.g. job_id={j.get('job_id')}, title={j.get('title')}")
+
     return deduplicated_jobs, removed_count
+
 def save_deduplicated(jobs, output_dir="data/processed"):
     os.makedirs(output_dir, exist_ok=True)
 
