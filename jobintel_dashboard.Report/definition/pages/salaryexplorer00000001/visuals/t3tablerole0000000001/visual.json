@@ -1,0 +1,148 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "t3tablerole0000000001",
+  "position": {
+    "x": 20,
+    "y": 680,
+    "z": 30,
+    "width": 1300,
+    "height": 380,
+    "tabOrder": 30
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "ROLE_FAMILY"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.ROLE_FAMILY",
+              "nativeQueryRef": "ROLE_FAMILY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "Total Jobs"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.Total Jobs",
+              "nativeQueryRef": "Total Jobs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "Published Jobs"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.Published Jobs",
+              "nativeQueryRef": "Published Jobs"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "Avg Salary Published"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.Avg Salary Published",
+              "nativeQueryRef": "Avg Salary Published"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "Median Salary Published"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.Median Salary Published",
+              "nativeQueryRef": "Median Salary Published"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "Avg Salary Estimated"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.Avg Salary Estimated",
+              "nativeQueryRef": "Avg Salary Estimated"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT_JOB_POSTING"
+                  }
+                },
+                "Property": "Total Jobs"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Salary summary by role family'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

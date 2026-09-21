@@ -1,0 +1,44 @@
+table DIM_LOCATION
+	lineageTag: 753192ad-75df-4b1d-875b-a7e7929833cd
+
+	column LOCATION_KEY
+		dataType: double
+		lineageTag: 8a46ace1-8184-490f-a4d3-34c340f6b8b1
+		summarizeBy: none
+		sourceColumn: LOCATION_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CITY
+		dataType: string
+		lineageTag: de2c6eb8-89d0-46b9-af70-53134450621c
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: e7459a68-6637-4456-a09d-7301c3a494d0
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_LOCATION = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("HWAMCFE-BN02620.snowflakecomputing.com","JOBINTEL_WH",[Implementation="2.0"]),
+				    JOBINTEL_Database = Source{[Name="JOBINTEL",Kind="Database"]}[Data],
+				    MARKET_Schema = JOBINTEL_Database{[Name="MARKET",Kind="Schema"]}[Data],
+				    DIM_LOCATION_Table = MARKET_Schema{[Name="DIM_LOCATION",Kind="Table"]}[Data]
+				in
+				    DIM_LOCATION_Table
+
+	annotation PBI_ResultType = Table
+

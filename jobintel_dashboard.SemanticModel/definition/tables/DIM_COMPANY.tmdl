@@ -1,0 +1,34 @@
+table DIM_COMPANY
+	lineageTag: 248d19a8-b70b-4028-b514-a0e3076a148c
+
+	column COMPANY_KEY
+		dataType: double
+		lineageTag: 9a87e769-24fa-44fd-8818-90ebc6c2fa21
+		summarizeBy: none
+		sourceColumn: COMPANY_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COMPANY_NAME
+		dataType: string
+		lineageTag: f3173990-47d5-490c-a581-937814f0278c
+		summarizeBy: none
+		sourceColumn: COMPANY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_COMPANY = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("HWAMCFE-BN02620.snowflakecomputing.com","JOBINTEL_WH",[Implementation="2.0"]),
+				    JOBINTEL_Database = Source{[Name="JOBINTEL",Kind="Database"]}[Data],
+				    MARKET_Schema = JOBINTEL_Database{[Name="MARKET",Kind="Schema"]}[Data],
+				    DIM_COMPANY_Table = MARKET_Schema{[Name="DIM_COMPANY",Kind="Table"]}[Data]
+				in
+				    DIM_COMPANY_Table
+
+	annotation PBI_ResultType = Table
+

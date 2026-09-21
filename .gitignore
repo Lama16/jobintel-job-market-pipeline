@@ -3,3 +3,7 @@ venv/
 data/raw/
 __pycache__/
 *.pyc
+
+# Power BI project: local data cache and per-user settings
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

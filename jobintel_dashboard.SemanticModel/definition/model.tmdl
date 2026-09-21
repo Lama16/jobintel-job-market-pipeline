@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["BRIDGE_JOB_SKILL","DIM_COMPANY","DIM_DATE","DIM_LOCATION","FACT_JOB_POSTING"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table BRIDGE_JOB_SKILL
+ref table DIM_COMPANY
+ref table DIM_DATE
+ref table DateTableTemplate_136efa77-fc16-4a51-bc68-4b77765037d3
+ref table LocalDateTable_c0162606-be90-4d1a-813c-2a7d9b91563b
+ref table DIM_LOCATION
+ref table FACT_JOB_POSTING
+
+ref cultureInfo en-US
+

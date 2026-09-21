@@ -1,0 +1,192 @@
+table FACT_JOB_POSTING
+	lineageTag: ac3cf42d-5c34-4797-b3be-42b230d08882
+
+	measure 'Total Jobs' = COUNTROWS(FACT_JOB_POSTING)
+		formatString: 0
+		lineageTag: 2d440547-5fcf-4ce8-ab82-9c72aca7a750
+
+	measure 'Avg Salary Published' =
+			
+			CALCULATE(
+			    AVERAGEX(FACT_JOB_POSTING, (FACT_JOB_POSTING[SALARY_MIN] + FACT_JOB_POSTING[SALARY_MAX]) / 2),
+			    FACT_JOB_POSTING[IS_ESTIMATED] = FALSE()
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7be7c28d-3ecc-48cd-ab64-69433cce7e6f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Salary Estimated' =
+			
+			CALCULATE(
+			    AVERAGEX(FACT_JOB_POSTING, (FACT_JOB_POSTING[SALARY_MIN] + FACT_JOB_POSTING[SALARY_MAX]) / 2),
+			    FACT_JOB_POSTING[IS_ESTIMATED] = TRUE()
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c9d93c5f-55fa-48f8-9ca9-0367cabe1a54
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '% Estimated' = DIVIDE(CALCULATE([Total Jobs], FACT_JOB_POSTING[IS_ESTIMATED] = TRUE()), [Total Jobs])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 42ffbda5-b7a0-4b52-81c8-36f3b22dc130
+
+	measure 'Skill Mentions' = COUNTROWS(BRIDGE_JOB_SKILL)
+		formatString: 0
+		lineageTag: e3b273f9-4947-40f5-80b2-ecd75604364e
+
+	measure 'Jobs Without Role Family' = CALCULATE([Total Jobs], ISBLANK(FACT_JOB_POSTING[ROLE_FAMILY]))
+		formatString: 0
+		lineageTag: 6ea8c11a-af2d-46d2-bdd4-ca1233dfbb8b
+
+	measure 'Published Jobs' = CALCULATE([Total Jobs], FACT_JOB_POSTING[IS_ESTIMATED] = FALSE())
+		formatString: 0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000001
+
+	measure 'Estimated Jobs' = CALCULATE([Total Jobs], FACT_JOB_POSTING[IS_ESTIMATED] = TRUE())
+		formatString: 0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000002
+
+	measure 'Median Salary Published' = CALCULATE(MEDIANX(FACT_JOB_POSTING, (FACT_JOB_POSTING[SALARY_MIN] + FACT_JOB_POSTING[SALARY_MAX]) / 2), FACT_JOB_POSTING[IS_ESTIMATED] = FALSE())
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000003
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Median Salary Estimated' = CALCULATE(MEDIANX(FACT_JOB_POSTING, (FACT_JOB_POSTING[SALARY_MIN] + FACT_JOB_POSTING[SALARY_MAX]) / 2), FACT_JOB_POSTING[IS_ESTIMATED] = TRUE())
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000004
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Min Salary Published' = CALCULATE(AVERAGE(FACT_JOB_POSTING[SALARY_MIN]), FACT_JOB_POSTING[IS_ESTIMATED] = FALSE())
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000005
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Max Salary Published' = CALCULATE(AVERAGE(FACT_JOB_POSTING[SALARY_MAX]), FACT_JOB_POSTING[IS_ESTIMATED] = FALSE())
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000006
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Jobs With Skills' = DISTINCTCOUNT(BRIDGE_JOB_SKILL[JOB_ID])
+		formatString: 0
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000007
+
+	measure '% Jobs With Skills' = DIVIDE([Jobs With Skills], [Total Jobs])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000008
+
+	column JOB_ID
+		dataType: string
+		lineageTag: a1c00607-7526-4748-9d43-bfc660ad6105
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPANY_KEY
+		dataType: double
+		lineageTag: 1fb47e3b-60b4-4cd7-b12e-39048bf01b5e
+		summarizeBy: none
+		sourceColumn: COMPANY_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LOCATION_KEY
+		dataType: double
+		lineageTag: 7d9781bf-8497-4718-be58-3108282a12fe
+		summarizeBy: none
+		sourceColumn: LOCATION_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATE_KEY
+		dataType: double
+		lineageTag: b776c829-1842-4054-93ca-7c39527c24fc
+		summarizeBy: none
+		sourceColumn: DATE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TITLE
+		dataType: string
+		lineageTag: b16cdd1e-df9f-4ef1-8b02-3d90f82c71e2
+		summarizeBy: none
+		sourceColumn: TITLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROLE_FAMILY
+		dataType: string
+		lineageTag: 9e494c3b-0cd0-440d-9b1e-c29e427e5651
+		summarizeBy: none
+		sourceColumn: ROLE_FAMILY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALARY_MIN
+		dataType: double
+		lineageTag: 226e6c27-aea3-4f96-b318-724297f03feb
+		summarizeBy: sum
+		sourceColumn: SALARY_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SALARY_MAX
+		dataType: double
+		lineageTag: 24e7a7c7-7637-4f8f-aaf5-472094763c11
+		summarizeBy: sum
+		sourceColumn: SALARY_MAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IS_ESTIMATED
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 55435b70-25a1-4b9b-b5af-64b8794b8d80
+		summarizeBy: none
+		sourceColumn: IS_ESTIMATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column SOURCE
+		dataType: string
+		lineageTag: 67bff16d-5053-417e-b582-c0391162fb70
+		summarizeBy: none
+		sourceColumn: SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Salary Band' = VAR mid = (FACT_JOB_POSTING[SALARY_MIN] + FACT_JOB_POSTING[SALARY_MAX]) / 2 RETURN SWITCH(TRUE(), mid < 20000, "0. Hourly or invalid", mid < 75000, "1. Under $75K", mid < 100000, "2. $75K-$100K", mid < 125000, "3. $100K-$125K", mid < 150000, "4. $125K-$150K", mid < 200000, "5. $150K-$200K", "6. $200K and above")
+		dataType: string
+		lineageTag: 0b1d6f3e-5a7c-4c1e-9f2a-1a0000000009
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FACT_JOB_POSTING = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("HWAMCFE-BN02620.snowflakecomputing.com","JOBINTEL_WH",[Implementation="2.0"]),
+				    JOBINTEL_Database = Source{[Name="JOBINTEL",Kind="Database"]}[Data],
+				    MARKET_Schema = JOBINTEL_Database{[Name="MARKET",Kind="Schema"]}[Data],
+				    FACT_JOB_POSTING_Table = MARKET_Schema{[Name="FACT_JOB_POSTING",Kind="Table"]}[Data]
+				in
+				    FACT_JOB_POSTING_Table
+
+	annotation PBI_ResultType = Table
+
