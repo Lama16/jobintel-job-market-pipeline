@@ -1,0 +1,21 @@
+relationship 651cefcf-ab00-4fe9-97f0-6e72ed0ffa62
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATE.FULL_DATE
+	toColumn: LocalDateTable_c0162606-be90-4d1a-813c-2a7d9b91563b.Date
+
+relationship AutoDetected_08c5bb3d-0570-4853-8349-38bb0387dfaa
+	fromColumn: BRIDGE_JOB_SKILL.JOB_ID
+	toColumn: FACT_JOB_POSTING.JOB_ID
+
+relationship AutoDetected_ac95776d-2f65-4ddf-a1d6-c534c61ef209
+	fromColumn: FACT_JOB_POSTING.COMPANY_KEY
+	toColumn: DIM_COMPANY.COMPANY_KEY
+
+relationship AutoDetected_cdb9e4cb-d0eb-4a38-8947-40226181577e
+	fromColumn: FACT_JOB_POSTING.DATE_KEY
+	toColumn: DIM_DATE.DATE_KEY
+
+relationship AutoDetected_e505a3f6-9dc0-41ee-be6a-72a64279bfba
+	fromColumn: FACT_JOB_POSTING.LOCATION_KEY
+	toColumn: DIM_LOCATION.LOCATION_KEY
+

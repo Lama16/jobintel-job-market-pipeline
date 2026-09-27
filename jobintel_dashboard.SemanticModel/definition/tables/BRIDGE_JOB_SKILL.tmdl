@@ -1,0 +1,32 @@
+table BRIDGE_JOB_SKILL
+	lineageTag: e4f87ec5-2cba-4ae8-b919-9664fe45885e
+
+	column JOB_ID
+		dataType: string
+		lineageTag: 4384f763-6d5e-42ce-9414-3af4cc5897a5
+		summarizeBy: none
+		sourceColumn: JOB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKILL
+		dataType: string
+		lineageTag: 9aace9c4-228a-4dd1-929b-8bc94be58193
+		summarizeBy: none
+		sourceColumn: SKILL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BRIDGE_JOB_SKILL = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("HWAMCFE-BN02620.snowflakecomputing.com","JOBINTEL_WH",[Implementation="2.0"]),
+				    JOBINTEL_Database = Source{[Name="JOBINTEL",Kind="Database"]}[Data],
+				    MARKET_Schema = JOBINTEL_Database{[Name="MARKET",Kind="Schema"]}[Data],
+				    BRIDGE_JOB_SKILL_Table = MARKET_Schema{[Name="BRIDGE_JOB_SKILL",Kind="Table"]}[Data]
+				in
+				    BRIDGE_JOB_SKILL_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,72 @@
+table DIM_DATE
+	lineageTag: 040f6fde-2d16-41bd-b5bd-52480cd7286a
+
+	column DATE_KEY
+		dataType: double
+		lineageTag: da2dccf3-ba45-4323-b001-f39a016f8ada
+		summarizeBy: none
+		sourceColumn: DATE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FULL_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bcc0043c-3dc7-4bc0-a6a1-32b23015d024
+		summarizeBy: none
+		sourceColumn: FULL_DATE
+
+		variation Variation
+			isDefault
+			relationship: 651cefcf-ab00-4fe9-97f0-6e72ed0ffa62
+			defaultHierarchy: LocalDateTable_c0162606-be90-4d1a-813c-2a7d9b91563b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YEAR
+		dataType: double
+		lineageTag: c3d79e41-380f-466e-bb84-79dce0e67808
+		summarizeBy: sum
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH
+		dataType: double
+		lineageTag: fb2bbfb4-d588-4559-bb1d-cafd66abd9d6
+		summarizeBy: sum
+		sourceColumn: MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY
+		dataType: double
+		lineageTag: c590d742-28ff-4952-8649-7582303d28bb
+		summarizeBy: sum
+		sourceColumn: DAY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_DATE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("HWAMCFE-BN02620.snowflakecomputing.com","JOBINTEL_WH",[Implementation="2.0"]),
+				    JOBINTEL_Database = Source{[Name="JOBINTEL",Kind="Database"]}[Data],
+				    MARKET_Schema = JOBINTEL_Database{[Name="MARKET",Kind="Schema"]}[Data],
+				    DIM_DATE_Table = MARKET_Schema{[Name="DIM_DATE",Kind="Table"]}[Data]
+				in
+				    DIM_DATE_Table
+
+	annotation PBI_ResultType = Table
+

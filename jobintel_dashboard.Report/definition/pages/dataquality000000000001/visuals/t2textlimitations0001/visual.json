@@ -1,0 +1,97 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "t2textlimitations0001",
+  "position": {
+    "x": 960,
+    "y": 680,
+    "z": 31,
+    "width": 940,
+    "height": 380,
+    "tabOrder": 31
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Known limitations",
+                    "textStyle": {
+                      "fontSize": "16pt",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• 680 of 1,261 jobs have no role family (mostly non-technical Adzuna postings); they are excluded from the Tech Job Market page.",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Adzuna truncates job descriptions, so skill counts are low (235 mentions in total).",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• Company names are not cleaned: some Adzuna employers include extra text, e.g. \"SimVentions, Inc - Glassdoor ✪ 4.6\".",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• \"(Blank)\" in the states chart means jobs with no state in the source data.",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• One Adzuna salary (HelloTech, 40–57) is an hourly rate; it is filtered out of salary charts.",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "• All jobs share one load date (2026-09-08); posting dates are not in the data yet.",
+                    "textStyle": {
+                      "fontSize": "11pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "t6tablejobs0000000001",
+  "position": {
+    "x": 20,
+    "y": 230,
+    "z": 20,
+    "width": 1880,
+    "height": 830,
+    "tabOrder": 20
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "TITLE"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.TITLE",
+              "nativeQueryRef": "TITLE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_COMPANY"
+                    }
+                  },
+                  "Property": "COMPANY_NAME"
+                }
+              },
+              "queryRef": "DIM_COMPANY.COMPANY_NAME",
+              "nativeQueryRef": "COMPANY_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_LOCATION"
+                    }
+                  },
+                  "Property": "CITY"
+                }
+              },
+              "queryRef": "DIM_LOCATION.CITY",
+              "nativeQueryRef": "CITY"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_LOCATION"
+                    }
+                  },
+                  "Property": "STATE"
+                }
+              },
+              "queryRef": "DIM_LOCATION.STATE",
+              "nativeQueryRef": "STATE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "ROLE_FAMILY"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.ROLE_FAMILY",
+              "nativeQueryRef": "ROLE_FAMILY"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "SALARY_MIN"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.SALARY_MIN",
+              "nativeQueryRef": "SALARY_MIN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "SALARY_MAX"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.SALARY_MAX",
+              "nativeQueryRef": "SALARY_MAX"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "IS_ESTIMATED"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.IS_ESTIMATED",
+              "nativeQueryRef": "IS_ESTIMATED"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "SOURCE"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.SOURCE",
+              "nativeQueryRef": "SOURCE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FACT_JOB_POSTING"
+                    }
+                  },
+                  "Property": "JOB_ID"
+                }
+              },
+              "queryRef": "FACT_JOB_POSTING.JOB_ID",
+              "nativeQueryRef": "JOB_ID"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FACT_JOB_POSTING"
+                  }
+                },
+                "Property": "TITLE"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All jobs'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
